@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="style.css">
+<div class='control'>
+	<p>
+		<div class='img active' id='1'></div>
+		<div class='img active' id='2'></div>
+		<div class='img' id='3'></div>
+		<div class='img' id='4'></div>
+		<div class='img' id='5'></div>
+	</p>
+	<p>
+		<button>Кнопка</button>
+	</p>
+</div>
+<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+<script type='text/javascript'>
+
+window.max = 0;
+$("div.active").each(function(index, element){
+	var id = $(element).attr('id');
+	if(id > window.max){
+		window.max = id;
+	}
+});
+$("div.img").mouseenter(function() {
+	$("div.img").removeClass('active');
+	var i = $(this).attr('id');
+	while (i !== 0) {
+	  $("div#"+i+"").addClass("active");
+	  i--;
+	}
+});
+$('div.img').mouseleave(function(){
+	$("div.img").each(function(index, element){
+		var id = $(element).attr('id');
+		if(id > window.max){
+			$(element).removeClass("active");
+		}
+		else{
+			$(element).addClass("active");
+		}
+	});
+});
+$("div.img").click(function() {
+	window.max = $(this).attr('id');
+});
+</script>
+
